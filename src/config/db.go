@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"go_test/src/model"
 	"log"
 	"os"
 
@@ -31,14 +32,14 @@ func ConnectDB() *gorm.DB {
 	}
 
 	// Auto migrate authentication tables
-	// err = db.AutoMigrate(
-	// 	&models.User{},
-	// 	&models.Role{},
-	// 	&models.UserRole{},
-	// )
-	// if err != nil {
-	// 	log.Fatal("Migration failed:", err)
-	// }
+	err = db.AutoMigrate(
+		&model.User{},
+		// &models.Role{},
+		// &models.UserRole{},
+	)
+	if err != nil {
+		log.Fatal("Migration failed:", err)
+	}
 
 	fmt.Println("Connected to database and migrations applied successfully!")
 	return db
