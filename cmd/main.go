@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"go_test/src/config"
 	"log"
 	"os"
 
@@ -14,6 +15,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file");
 	}
+
+	config.ConnectDB()
 	
 	port:= os.Getenv("PORT")
 	if port == "" {
